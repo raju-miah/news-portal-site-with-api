@@ -9,7 +9,7 @@ const displayCatagories = (catagorie) => {
   catagorie.forEach(catagories => {
     const catagoriesDiv = document.createElement('div');
     catagoriesDiv.innerHTML = `
-        <p onclick="loadNews(${catagories.category_id})" class="fw-bold p-3">${catagories.category_name}</p>
+        <a onclick="loadNews(${catagories.category_id})" class=" fw-bold p-3">${catagories.category_name}</a>
         `;
     catagorieContainer.appendChild(catagoriesDiv)
     // console.log(catagories)
@@ -23,6 +23,18 @@ const loadNews = (idnum) => {
 }
 
 const displayNews = (allnews) => {
+  if (allnews.length > 0) {
+    const totallength = allnews.length;
+    const inputfildText = document.getElementById('input-id');
+    inputfildText.innerText = 'Total' + ' ' + '[' + ' ' + totallength + ' ' + ']' + ' Update';
+  } else if (allnews.length <= 0) {
+
+    const totallength = allnews.length;
+    const inputfildText = document.getElementById('input-id');
+    inputfildText.innerText = 'Total ' + ' ' + totallength + ' Update ';
+
+
+  }
   // console.log(allnews)
   const newsContainer = document.getElementById('news-container');
   allnews.forEach(news => {
