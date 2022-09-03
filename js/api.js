@@ -9,7 +9,7 @@ const displayCatagories = (catagorie) => {
   catagorie.forEach(catagories => {
     const catagoriesDiv = document.createElement('div');
     catagoriesDiv.innerHTML = `
-        <p onclick="loadNews(${catagories.category_id})" class="p-3">${catagories.category_name}</p>
+        <p onclick="loadNews(${catagories.category_id})" class="fw-bold p-3">${catagories.category_name}</p>
         `;
     catagorieContainer.appendChild(catagoriesDiv)
     // console.log(catagories)
@@ -32,20 +32,25 @@ const displayNews = (allnews) => {
        
         <div class="card mb-3">
         <div class="row g-0">
-            <div class="col-md-4">
-                <img src="${news.thumbnail_url}" class="img-fluid rounded-start" alt="...">
+            <div class="col-md-3">
+                <img src="${news.thumbnail_url}" class="img-fluid rounded-start w-100" alt="...">
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9 d-flex align-items-center">
                 <div class="card-body d-flex flex-column justify-content-around">
-                    <h5 class="card-title">${news.title}</h5>
-                    <p>${news.details.slice(0, 400)}</p>
+                    <h2 class="card-title mb-3">${news.title}</h2>
+                    <p class="mb-3">${news.details.slice(0, 400)}...</p>
+                    
+
+                    <div class="d-flex justify-content-between">
+                <p>${news.author.name ? news.author.name : 'Name not found'}</p>
+                <p>Veiw: ${news.total_view}</p>
+                <button onclick="loadNewsDeteils()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetails">
+                News Details
+            </button>
+            </div>
                         
                 </div>
-                <div class="card-footer d-flex justify-content-between">
-                <p>${news.author.name}</p>
-                <p>Veiw: ${news.total_view}</p>
-                <a href="#" class="btn btn-primary">Button</a>
-            </div>
+                
                 
             </div>
            
@@ -57,6 +62,20 @@ const displayNews = (allnews) => {
     newsContainer.appendChild(newsDiv);
   })
 }
+
+// const loadNewsDeteils = (idDetail) => {
+//   fetch(`https://openapi.programming-hero.com/api/news/categories${idDetail}`)
+//     .then(res => res.json())
+//     .then(data => console.log(data.data.news_category))
+// }
+
+// const displayNewsDetails = (allDetails) => {
+//   console.log(allDetails)
+//   // const modalTital = document.getElementById('newsDetailsLabel');
+//   // modalTital.innerText = allDetails;
+
+
+// }
 
 
 loadCaragories();
