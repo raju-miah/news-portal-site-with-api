@@ -50,13 +50,13 @@ const displayNews = (allnews) => {
             <div class="col-md-9 d-flex align-items-center">
                 <div class="card-body d-flex flex-column justify-content-around">
                     <h2 class="card-title mb-3">${news.title}</h2>
-                    <p class="mb-3">${news.details.slice(0, 400)}...</p>
+                    <p class="mb-3">${news.details.slice(0, 400) + '....'}</p>
                     
 
                     <div class="d-flex justify-content-between">
-                <p>${news.author.name ? news.author.name : 'Name not found'}</p>
-                <p>Veiw: ${news.total_view}</p>
-                <button onclick="loadNewsDeteils('${news.author.name}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetails">
+                <p class="fw-bold">${news.author.name ? news.author.name : 'Name not found'}</p>
+                <p class="fw-bold">View: ${news.total_view ? news.total_view : 'NO Views'} M</p>
+                <button onclick="loadNewsDeteils('${news._Id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetails">
                 News Details
             </button>
             </div>
@@ -75,5 +75,7 @@ const displayNews = (allnews) => {
   })
 }
 
-
+loadNews();
 loadCaragories();
+
+
