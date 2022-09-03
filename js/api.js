@@ -44,7 +44,7 @@ const displayNews = (allnews) => {
                     <div class="d-flex justify-content-between">
                 <p>${news.author.name ? news.author.name : 'Name not found'}</p>
                 <p>Veiw: ${news.total_view}</p>
-                <button onclick="loadNewsDeteils()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetails">
+                <button onclick="loadNewsDeteils('${news.author.name}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetails">
                 News Details
             </button>
             </div>
@@ -62,20 +62,6 @@ const displayNews = (allnews) => {
     newsContainer.appendChild(newsDiv);
   })
 }
-
-// const loadNewsDeteils = (idDetail) => {
-//   fetch(`https://openapi.programming-hero.com/api/news/categories${idDetail}`)
-//     .then(res => res.json())
-//     .then(data => console.log(data.data.news_category))
-// }
-
-// const displayNewsDetails = (allDetails) => {
-//   console.log(allDetails)
-//   // const modalTital = document.getElementById('newsDetailsLabel');
-//   // modalTital.innerText = allDetails;
-
-
-// }
 
 
 loadCaragories();
