@@ -2,6 +2,7 @@ const loadCaragories = () => {
   fetch('https://openapi.programming-hero.com/api/news/categories')
     .then(res => res.json())
     .then(data => displayCatagories(data.data.news_category))
+    .catch(error => displayCatagories(error))
 };
 
 const displayCatagories = (catagorie) => {
@@ -17,21 +18,27 @@ const displayCatagories = (catagorie) => {
 }
 
 const loadNews = (idnum) => {
+  document.getElementById("spinner").style.display = "block";
   fetch(`https://openapi.programming-hero.com/api/news/category/${idnum}`)
     .then(res => res.json())
     .then(data => displayNews(data.data))
+    .catch(error => displayNews(error))
 }
 
 const displayNews = allnews => {
+  document.getElementById("spinner").style.display = "none";
+
+  // SORT HERE
+  allnews.sort((a, b) => b.total_view - a.total_view);
   if (allnews.length > 0) {
     const totallength = allnews.length;
-    const inputfildText = document.getElementById('input-id');
-    inputfildText.innerText = 'TOTAL' + ' ' + '[' + ' ' + totallength + ' ' + ']' + 'BRACKING';
+    const inputFieldText = document.getElementById('input-id');
+    inputFieldText.innerText = 'TOTAL' + ' ' + ' ' + totallength + ' ' + 'BREACKING';
   } else if (allnews.length <= 0) {
 
     const totallength = allnews.length;
-    const inputfildText = document.getElementById('input-id');
-    inputfildText.innerText = 'TOTAL ' + ' ' + totallength + ' BRACKING';
+    const inputFieldText = document.getElementById('input-id');
+    inputFieldText.innerText = 'TOTAL ' + ' ' + totallength + ' BREACKING';
 
 
   }
@@ -53,21 +60,15 @@ const displayNews = allnews => {
                 <div class="card-body d-flex flex-column justify-content-around">
                     <h2 class="card-title mb-3">${news.title}</h2>
                     <p class="mb-3">${news.details.slice(0, 400) + '....'}</p>
-                    
-
                     <div class="d-flex justify-content-between">
                 <p class="fw-bold">${news.author.name ? news.author.name : 'Name not found'}</p>
                 <p class="fw-bold">View: ${news.total_view ? news.total_view : 'NO Views'} M</p>
                 <button type="button" onclick="modalDetailsNews('${news._id}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 News Details
             </button>
-            </div>
-                        
+            </div>   
                 </div>
-                
-                
             </div>
-           
         </div>
     </div>
 
@@ -77,7 +78,7 @@ const displayNews = allnews => {
   })
 }
 
-loadNews();
+loadNews('02');
 loadCaragories();
 
 
