@@ -18,6 +18,7 @@ const displayCatagories = (catagorie) => {
 }
 
 const loadNews = (idnum) => {
+  // spinner here
   document.getElementById("spinner").style.display = "block";
   fetch(`https://openapi.programming-hero.com/api/news/category/${idnum}`)
     .then(res => res.json())
@@ -26,6 +27,7 @@ const loadNews = (idnum) => {
 }
 
 const displayNews = allnews => {
+  // spinner here
   document.getElementById("spinner").style.display = "none";
 
   // SORT HERE
@@ -46,7 +48,7 @@ const displayNews = allnews => {
   const newsContainer = document.getElementById('news-container');
   newsContainer.innerHTML = ''
   allnews.forEach(news => {
-    console.log(news)
+    // console.log(news)
     const newsDiv = document.createElement('div');
 
     newsDiv.innerHTML = `
@@ -93,7 +95,7 @@ const modalDetailsNews = (id) => {
 
 const modalDetailsNewsDisplay = modalNews => {
 
-  console.log(modalNews)
+  // console.log(modalNews)
 
   const modal = document.getElementById('exampleModalLabel');
   modal.innerHTML = ''
